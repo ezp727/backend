@@ -5,6 +5,7 @@ import culturemedia.model.Video;
 
 public interface VideoRepository {
     List<Video> findAll();
-    Video findByCode(String code);
-    void save(Video video);
+    Video add(Video video);
+    List<Video> findByTitle(String title);
+    List<Video> findDuration(Double lengthFrom, Double lengthGoesUp);
 }
