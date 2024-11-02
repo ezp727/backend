@@ -9,6 +9,7 @@ import culturemedia.model.Video;
 import culturemedia.repository.impl.VideoRepositoryImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class VideoRepositoryTest {
 
@@ -42,7 +43,7 @@ class VideoRepositoryTest {
     @Test
     void when_FindByTitle_only_videos_which_contains_the_word_in_the_title_should_be_returned_successfully() {
         List<Video> videos = videoRepository.find( "Clic" );
-        assertEquals(2, videos.size());
+        assertEquals(2, videos.size());     //corregido
     }
 
     @Test
@@ -53,12 +54,14 @@ class VideoRepositoryTest {
 
     @Test
     void when_FindByTitle_does_not_match_any_video_an_empty_list_should_be_returned_successfully() {
-        assert(false);
+        List<Video> videos = videoRepository.find( "awsd" );
+        assertTrue(videos.isEmpty());
     }
 
     @Test
     void when_FindByDuration_does_not_match_any_video_an_empty_list_should_be_returned_successfully() {
-        assert(false);
+        List<Video> videos = videoRepository.find( 8D, 9D );
+        assertTrue(videos.isEmpty());
     }
 
 }
