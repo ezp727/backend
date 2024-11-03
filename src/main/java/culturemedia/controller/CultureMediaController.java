@@ -6,7 +6,7 @@ import culturemedia.exception.VideoNotFoundException;
 import culturemedia.model.Video;
 import culturemedia.service.impl.CultureMediaServiceImpl;
 
-public class CultureMediaController {
+public class CultureMediaController{
 
     private final CultureMediaServiceImpl cultureMediaService;
 
