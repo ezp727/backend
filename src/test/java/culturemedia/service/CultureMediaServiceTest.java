@@ -9,6 +9,7 @@ import culturemedia.service.impl.CultureMediaServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,7 +44,8 @@ class CultureMediaServiceTest {
     }
 
     @Test
-    void when_FindAll_does_not_find_any_video_an_VideoNotFoundException_should_be_thrown_successfully() {
-        assert(false);
+    void when_FindAll_does_not_find_any_video_an_VideoNotFoundException_should_be_thrown_successfully() throws VideoNotFoundException{
+        init();    //preguntar
+        assertThrows(VideoNotFoundException.class,()->{cultureMediaService.findAll();});
     }
 }
