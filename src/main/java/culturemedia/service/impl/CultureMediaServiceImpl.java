@@ -37,4 +37,5 @@ public class CultureMediaServiceImpl implements CultureMediaService {
     public Video addVideo(Video video) {
         return videoRepository.add(video);
     }
+
 }
