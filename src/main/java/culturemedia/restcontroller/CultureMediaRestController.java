@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/videos") // Ruta base para los endpoints de videos
+@CrossOrigin(origins = "*")
+@RequestMapping("/videos") // Ruta base para los endpoints de videos
 public class CultureMediaRestController {
 
     private final CultureMediaService cultureMediaService;
