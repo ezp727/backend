@@ -1,0 +1,18 @@
+###Nota:Se supono que con este archivo se hacian las solicitudes http pero no me
+###deja hacerlo desde este entorno porque no tengo la version ultimate.
+###de igual forma, en la clase AppInit en la que defini las condiciones iniciales
+###puse un condicional para agregar videos al repositorio y que puedan ser mostrados
+
+###POST para agregar videos
+POST http://localhost:8080/api/videos
+Content-Type: application/json
+
+{
+  "id": "1C",
+  "title": "Video 3",
+  "description": "Un nuevo video",
+  "rating": 8.5
+}
+
+###GET para obtener videos
+GET http://localhost:8080/api/videos

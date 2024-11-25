@@ -22,20 +22,24 @@ import static org.mockito.Mockito.*;
 
 class CultureMediaServiceTest {
 
+
     private CultureMediaService cultureMediaService;
-    private VideoRepository videoRepositoryMock;
-    private ViewsRepository viewsRepositoryMock;
+    private VideoRepository videoRepositoryMock = Mockito.mock(VideoRepository.class);
+    private ViewsRepository viewsRepositoryMock = Mockito.mock(ViewsRepository.class);
 
     @BeforeEach
     void init(){
-        videoRepositoryMock = Mockito.mock(VideoRepository.class);
-        viewsRepositoryMock = Mockito.mock(ViewsRepository.class);
-
         cultureMediaService = new CultureMediaServiceImpl(viewsRepositoryMock, videoRepositoryMock);
     }
 
     @Test
     void when_FindAll_all_videos_should_be_returned_successfully() throws VideoNotFoundException {
+        mockVideoRepositoryFindAllWithResult();
+        List<Video> actual = cultureMediaService.findAll();
+        assertEquals(6, actual.size());
+    }
+
+    private void mockVideoRepositoryFindAllWithResult() {
         List<Video> videos = List.of(
         new Video("01", "Título 1", "----", 4.5),
         new Video("02", "Título 2", "----", 5.5),
@@ -45,15 +49,17 @@ class CultureMediaServiceTest {
         new Video("06", "Clic 6", "----", 5.1)
         );
         doReturn(videos).when(videoRepositoryMock).findAll();
-        List<Video> actual = cultureMediaService.findAll();
-        assertEquals(6, actual.size());
     }
 
     @Test
     void when_FindAll_all_videos_should_be_returned_throws_not_found() throws VideoNotFoundException {
+        mockVideoRepositoryFindAllWithNoResult();
+        assertThrows(VideoNotFoundException.class, () -> cultureMediaService.findAll());
+    }
+
+    private void mockVideoRepositoryFindAllWithNoResult() {
         List<Video> videos = new ArrayList<>();
         doReturn(videos).when(videoRepositoryMock).findAll();
-        assertThrows(VideoNotFoundException.class, () -> cultureMediaService.findAll());
     }
 
     @Test
